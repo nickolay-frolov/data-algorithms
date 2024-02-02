@@ -5,8 +5,8 @@ set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCES 
     src/Main.cpp
-    src/Sort.ipp
-    src/ServiceSort.ipp
+    include/Sort.h
+    include/ServiceSort.h
 )
 
 add_executable(SortAlgorithms ${SOURCES})

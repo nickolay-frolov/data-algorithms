@@ -1,4 +1,4 @@
-/**Сортировка пузырьком. 
+/**Сортировка пузырьком
     * Сортировка пузырьком — один из самых известных алгоритмов сортировки. 
     * Последовательное сравнивание соседних элементов с последующим изменением 
     * чисел местами, если предыдущее оказывается больше последующего.Таким образом 
@@ -15,9 +15,9 @@ void Sort<T>::Bubble(std::vector<T>& array)
         return;
     } 
 
-    for (int i = 0; i + 1 < array.size(); ++i)
+    for (size_t i = 0; i + 1 < array.size(); ++i)
     {
-       for (int j = 0; j + 1 < array.size() - i; ++j)
+       for (size_t j = 0; j + 1 < array.size() - i; ++j)
        {
             if (array[j + 1] < array[j])
             {
@@ -33,8 +33,6 @@ void Sort<T>::Bubble(std::vector<T>& array)
     * но помимо движения больших значений в конец массива и меньших значений в начало,
     * он выполняет движение в обоих направлениях. Чередование движения вперед и назад
     * позволяет ускорить сортировку за счет уменьшения количества итераций на каждом проходе. 
-    *
-    * @param array Сортируемый массив типа std::vector<T>.
 */
 template <typename T>
 void Sort<T>::Shaker(std::vector<T>& array)
@@ -49,7 +47,7 @@ void Sort<T>::Shaker(std::vector<T>& array)
 
     while(left <= right)
     {
-        for (int i = right; i > left; --i)
+        for (size_t i = right; i > left; --i)
         {
             if (array[i - 1] > array[i])
             {
@@ -59,7 +57,7 @@ void Sort<T>::Shaker(std::vector<T>& array)
     }
     ++left;
     
-    for (int i = 0; i < right; ++i)
+    for (size_t i = 0; i < right; ++i)
     {
         if (array[i] > values[i + 1])
         {
@@ -76,8 +74,6 @@ void Sort<T>::Shaker(std::vector<T>& array)
     * сортировки, при сортировке расчёской сначала берётся достаточно большое расстояние 
     * между сравниваемыми значениями, а потом оно сужается по мере продвижения 
     * по массиву до минимального значения.
-    * 
-    * @param array Сортируемый массив типа std::vector<T>.
 */
 template <typename T>
 void Sort<T>::Comb(std::vector<T>& array)
@@ -92,7 +88,7 @@ void Sort<T>::Comb(std::vector<T>& array)
 
     while (step >= 1)
     {
-        for (int i = 0; i + step < array.size(); i++)
+        for (size_t i = 0; i + step < array.size(); i++)
         {
             if (array[i] > array[i + step])
             {
@@ -103,14 +99,74 @@ void Sort<T>::Comb(std::vector<T>& array)
     }
 
     //Выполннение Bubble sort для "причесанного" массива 
-    for (int i = 0; i + 1 < array.size(); ++i)
+    for (size_t i = 0; i + 1 < array.size(); ++i)
     {
-        for (int j = 0; j + 1 < array.size() - i; ++j)
+        for (size_t j = 0; j + 1 < array.size() - i; ++j)
         {
             if (array[j + 1] < array[j])
             {
-                std::swap(array[j], array[j + 1])
+                std::swap(array[j], array[j + 1]);
             }
+        }
+    }
+}
+
+/* Сортировка вставками
+ * При сортировке вставками массив постепенно перебирается слева направо. 
+ * При этом каждый последующий элемент размещается так, чтобы он оказался 
+ * между ближайшими элементами с минимальным и максимальным значением. 
+*/
+template <typename T>
+void Sort<T>::Insertion(std::vector<T>& array)
+{
+    if (array.size() < 2)
+    {
+        return;
+    }
+
+    for (size_t i = 1; i < array.size(); ++i)
+    {
+        T tmp = array[i];
+        size_t j = i;
+        
+        while (j > 0 && array[j - 1] > tmp)
+        {
+            array[j] = array[j - 1];
+            --j;
+        }
+
+        array[j] = tmp;
+    }
+}
+
+/* Сортировка выбором
+ * При сортировке выбором массив постепенно перебирается по очереди.
+ * Для каждого элемента находится наименьший элемент справа, если 
+ * таковой находится, менчяяем местами с текущим.
+*/
+template <typename T>
+void Sort<T>::Selection(std::vector<T>& array)
+{
+    if (array.size() < 2)
+    {
+        return;
+    }
+
+    for (size_t i = 0; i < array.size() - 1; ++i)
+    {
+        size_t minIndex = i;
+
+        for (size_t j = i + 1; j < array.size(); ++j)
+        {
+            if (array[j] < array[minIndex])
+            {
+                minIndex = j;
+            }
+        }
+
+        if (minIndex != i)
+        {
+            std::swap(array[i], array[minIndex]);
         }
     }
 }

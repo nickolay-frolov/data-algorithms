@@ -15,13 +15,13 @@ class Sort
 		void Comb(std::vector<T>& array);
 
 		//Simple sort
-		//void Insertion(std::vector<T> array);
-		//void Selection(std::vector<T> array);
+		void Insertion(std::vector<T>& array);
+		void Selection(std::vector<T>& array);
 		//
 		//Effective sort
-		//void Quick(std::vector<T> array);
-		//void Merge(std::vector<T> array);
-		//void Heap(std::vector<T> array);
+		//void Quick(std::vector<T>& array);
+		//void Merge(std::vector<T>& array);
+		//void Heap(std::vector<T>& array);
 };
 
 #include "..\\src\\Sort.ipp"
