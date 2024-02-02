@@ -15,7 +15,7 @@ int main()
     std::cout << "Vector:" << std::endl;
     service.Print(testVect);
 
-    sort.Selection(testVect);
+    sort.Quick(testVect);
     
     std::cout << "\nSorted vector:" << std::endl;
     service.Print(testVect);
