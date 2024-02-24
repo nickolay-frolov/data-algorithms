@@ -1,2 +1,2 @@
-# sort-algorithms
-realization of basic sorting algorithms in C++
+# data-algorithms
+realization of data algorithms in C++
