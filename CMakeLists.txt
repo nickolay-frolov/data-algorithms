@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10) 
-project(SortAlgorithms)
+project(DataAlgorithms)
 
 set(CMAKE_CXX_STANDARD 11)
 
@@ -9,4 +9,4 @@ set(SOURCES
     include/ServiceSort.h
 )
 
-add_executable(SortAlgorithms ${SOURCES})
+add_executable(DataAlgorithms ${SOURCES})

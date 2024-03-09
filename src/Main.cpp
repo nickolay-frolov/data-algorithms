@@ -15,7 +15,7 @@ int main()
     std::cout << "Vector:" << std::endl;
     service.Print(testVect);
 
-    sort.Quick(testVect);
+    sort.Merge(testVect);
     
     std::cout << "\nSorted vector:" << std::endl;
     service.Print(testVect);

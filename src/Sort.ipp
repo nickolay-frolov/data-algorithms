@@ -171,6 +171,14 @@ void Sort<T>::Selection(std::vector<T>& array)
 	}
 }
 
+/* Быстрая сортировка
+ * На очередном шаге выбирается опорный элемент. Все остальные элементы массива 
+ * сравниваются с опорным и те, которые меньше него, ставятся слева от него, 
+ * а которые больше или равны — справа. Для двух получившихся блоков массива 
+ * (меньше опорного, и больше либо равны опорному) рекурсивно производится 
+ * точно такая же сортировка, до тех пор пока блоки не будут состоять 
+ * из одного элемента.
+*/
 template <typename T>
 int Sort<T>::FindPivotOfQuick(std::vector<T>& array, int left, int right)
 {
@@ -216,20 +224,55 @@ void Sort<T>::Quick(std::vector<T>& array)
 	this->RecursionOfQuick(array, 0, array.size() - 1);
 }
 
-//template <typename T>
-//void Sort<T>::Merge(std::vector<T>& array)
-//{
-//    if (array.size() < 2)
-//    {
-//        return;
-//    }
-//}
-//
-//template <typename T>
-//void Sort<T>::Heap(std::vector<T>& array)
-//{
-//    if (array.size() < 2)
-//    {
-//        return;
-//    }
-//}
+/* Сортировка слиянием
+ * Массив разбивается на две примерно равные блоки. 
+ * Каждый из блоков рекурсивно сортируется тем же самым алгоритмом.
+ * Разбиение на блоки продолжается до тех пор пока блоки не будут э
+ * состоять из одного элемента. После чего блоки соединяются в 
+ * исходный массив.
+*/
+template <typename T>
+void Sort<T>::Merging(std::vector<T>& array, std::vector<T>& buffer, int left, int right)
+{
+	if (left < right) {
+		int mid = (left + right) / 2;
+		
+		this->Merging(array, buffer, left, mid);
+		this->Merging(array, buffer, mid + 1, right);
+
+		int k = left;
+		for (int i = left, j = mid + 1; i <= mid || j <= right; ) {
+			if (j > right || (i <= mid && array[i] < array[j])) {
+				buffer[k] = array[i];
+				++i;
+			} else {
+				buffer[k] = array[j];
+				++j;
+			}
+			++k;
+		}
+		for (int i = left; i <= right; ++i) {
+			array[i] = buffer[i];
+		}
+	}
+}
+
+template <typename T>
+void Sort<T>::Merge(std::vector<T>& array)
+{
+	if (!array.empty()) {
+		std::vector<T> buffer(array.size());
+		this->Merging(array, buffer, 0, array.size() - 1);
+	}
+	
+}
+
+
+template <typename T>
+void Sort<T>::Heap(std::vector<T>& array)
+{
+    if (array.size() < 2)
+    {
+        return;
+    }
+}

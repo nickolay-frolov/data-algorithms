@@ -20,12 +20,14 @@ public:
 
 	//Effective sort
 	void Quick(std::vector<T>& array);
-	/*void Merge(std::vector<T>& array);
-	void Heap(std::vector<T>& array);*/
+	void Merge(std::vector<T>& array);
+	void Heap(std::vector<T>& array);
 
 private:
 	int FindPivotOfQuick(std::vector<T>& array, int left, int right);
 	void RecursionOfQuick(std::vector<T>& array, int left, int right);
+	
+	void Merging(std::vector<T>& array, std::vector<T>& buffer, int left, int right);
 }
 
 #include "..\\src\\Sort.ipp"
