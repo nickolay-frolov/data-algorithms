@@ -1,5 +1,5 @@
 template <class T>
-void ServiceSort<T>::Print(std::vector<T> array)
+void ServiceSort<T>::PrintVector(std::vector<T> array)
 {
     for (int i = 0; i < array.size(); i++)
     {
@@ -9,7 +9,7 @@ void ServiceSort<T>::Print(std::vector<T> array)
 }
 
 template <class T> 
-std::vector<T> ServiceSort<T>::FillRandomValues(int size)
+std::vector<T> ServiceSort<T>::FillVectorRandomValues(int size)
 {
     srand(time(NULL));
     std::vector<T> array;

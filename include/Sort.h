@@ -28,6 +28,9 @@ private:
 	void RecursionOfQuick(std::vector<T>& array, int left, int right);
 	
 	void Merging(std::vector<T>& array, std::vector<T>& buffer, int left, int right);
+
+	void Heapify(std::vector<T>& array, int heap_size, int root);
+	void RecursionHeapify(std::vector<T>& array, int heap_size);
 }
 
 #include "..\\src\\Sort.ipp"

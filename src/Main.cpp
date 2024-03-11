@@ -10,15 +10,15 @@ int main()
     Sort<VECT_TYPE> sort;
     ServiceSort<VECT_TYPE> service;
     
-    std::vector<VECT_TYPE> testVect = service.FillRandomValues(15);
+    std::vector<VECT_TYPE> testVect = service.FillVectorRandomValues(15);
     
     std::cout << "Vector:" << std::endl;
-    service.Print(testVect);
+    service.PrintVector(testVect);
 
-    sort.Merge(testVect);
+    sort.Heap(testVect);
     
     std::cout << "\nSorted vector:" << std::endl;
-    service.Print(testVect);
+    service.PrintVector(testVect);
 
     return 0;
 }

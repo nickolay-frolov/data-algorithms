@@ -9,8 +9,8 @@ template <class T>
 class ServiceSort
 {
 	public:
-		void Print(std::vector<T> array);
-		std::vector<T> FillRandomValues(int size);
+		void PrintVector(std::vector<T> array);
+		std::vector<T> FillVectorRandomValues(int size);
 };
 
 #include "..\\src\\ServiceSort.ipp"

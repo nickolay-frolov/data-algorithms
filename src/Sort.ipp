@@ -4,23 +4,18 @@
  * чисел местами, если предыдущее оказывается больше последующего.Таким образом
  * элементы с большими значениями оказываются в конце списка,
  * а с меньшими остаются в начале. Является учебным, и не применяется на практике.
- *
- * @param array Сортируемый массив типа std::vector<T>.
 */;
+
 template <typename T>
 void Sort<T>::Bubble(std::vector<T>& array)
 {
-	if (array.size() < 2)
-	{
+	if (array.size() < 2) {
 		return;
 	}
 
-	for (size_t i = 0; i + 1 < array.size(); ++i)
-	{
-		for (size_t j = 0; j + 1 < array.size() - i; ++j)
-		{
-			if (array[j + 1] < array[j])
-			{
+	for (size_t i = 0; i + 1 < array.size(); ++i) {
+		for (size_t j = 0; j + 1 < array.size() - i; ++j) {
+			if (array[j + 1] < array[j]) {
 				std::swap(array[j], array[j + 1]);
 			}
 		}
@@ -37,16 +32,14 @@ void Sort<T>::Bubble(std::vector<T>& array)
 template <typename T>
 void Sort<T>::Shaker(std::vector<T>& array)
 {
-	if (array.size() < 2)
-	{
+	if (array.size() < 2) {
 		return;
 	}
 
 	int left = 0;
 	int right = array.size() - 1;
 
-	while (left <= right)
-	{
+	while (left <= right) {
 		for (size_t i = right; i > left; --i)
 		{
 			if (array[i - 1] > array[i])
@@ -57,8 +50,7 @@ void Sort<T>::Shaker(std::vector<T>& array)
 	}
 	++left;
 
-	for (size_t i = 0; i < right; ++i)
-	{
+	for (size_t i = 0; i < right; ++i) {
 		if (array[i] > values[i + 1])
 		{
 			std::swap(array[i], array[i + 1])
@@ -78,20 +70,16 @@ void Sort<T>::Shaker(std::vector<T>& array)
 template <typename T>
 void Sort<T>::Comb(std::vector<T>& array)
 {
-	if (array.size() < 2)
-	{
+	if (array.size() < 2) {
 		return;
 	}
 
 	const double factor = 1.247; //оптимальный фактор уменьшения
 	double step = array.size() - 1;
 
-	while (step >= 1)
-	{
-		for (size_t i = 0; i + step < array.size(); i++)
-		{
-			if (array[i] > array[i + step])
-			{
+	while (step >= 1) {
+		for (size_t i = 0; i + step < array.size(); i++) {
+			if (array[i] > array[i + step]) {
 				std::swap(array[i], array[i + step]);
 			}
 		}
@@ -99,12 +87,9 @@ void Sort<T>::Comb(std::vector<T>& array)
 	}
 
 	//Выполннение Bubble sort для "причесанного" массива 
-	for (size_t i = 0; i + 1 < array.size(); ++i)
-	{
-		for (size_t j = 0; j + 1 < array.size() - i; ++j)
-		{
-			if (array[j + 1] < array[j])
-			{
+	for (size_t i = 0; i + 1 < array.size(); ++i) {
+		for (size_t j = 0; j + 1 < array.size() - i; ++j) {
+			if (array[j + 1] < array[j]) {
 				std::swap(array[j], array[j + 1]);
 			}
 		}
@@ -119,18 +104,15 @@ void Sort<T>::Comb(std::vector<T>& array)
 template <typename T>
 void Sort<T>::Insertion(std::vector<T>& array)
 {
-	if (array.size() < 2)
-	{
+	if (array.size() < 2) {
 		return;
 	}
 
-	for (size_t i = 1; i < array.size(); ++i)
-	{
+	for (size_t i = 1; i < array.size(); ++i) {
 		T tmp = array[i];
 		size_t j = i;
 
-		while (j > 0 && array[j - 1] > tmp)
-		{
+		while (j > 0 && array[j - 1] > tmp) {
 			array[j] = array[j - 1];
 			--j;
 		}
@@ -147,25 +129,21 @@ void Sort<T>::Insertion(std::vector<T>& array)
 template <typename T>
 void Sort<T>::Selection(std::vector<T>& array)
 {
-	if (array.size() < 2)
-	{
+	if (array.size() < 2) {
 		return;
 	}
 
-	for (size_t i = 0; i < array.size() - 1; ++i)
-	{
+	for (size_t i = 0; i < array.size() - 1; ++i) {
 		size_t minIndex = i;
 
-		for (size_t j = i + 1; j < array.size(); ++j)
-		{
+		for (size_t j = i + 1; j < array.size(); ++j) {
 			if (array[j] < array[minIndex])
 			{
 				minIndex = j;
 			}
 		}
 
-		if (minIndex != i)
-		{
+		if (minIndex != i) {
 			std::swap(array[i], array[minIndex]);
 		}
 	}
@@ -184,19 +162,16 @@ int Sort<T>::FindPivotOfQuick(std::vector<T>& array, int left, int right)
 {
 	int pivot = array[left + (right - left) / 2];
 
-	while (left <= right)
-	{
-		while (array[left] < pivot)
-		{
+	while (left <= right) {
+		while (array[left] < pivot) {
 			left++;
 		}
-		while (array[right] > pivot)
-		{
+		
+		while (array[right] > pivot) {
 			right--;
 		}
 		
-		if (left <= right)
-		{
+		if (left <= right) {
 			std::swap(array[left], array[right]);
 			left++;
 			right--;
@@ -209,8 +184,7 @@ int Sort<T>::FindPivotOfQuick(std::vector<T>& array, int left, int right)
 template <typename T>
 void Sort<T>::RecursionOfQuick(std::vector<T>& array, int left, int right)
 {
-	if (left < right)
-	{
+	if (left < right) {
 		int pivotIndex = this->FindPivotOfQuick(array, left, right);
 
 		this->RecursionOfQuick(array, left, pivotIndex - 1);
@@ -221,6 +195,10 @@ void Sort<T>::RecursionOfQuick(std::vector<T>& array, int left, int right)
 template <typename T>
 void Sort<T>::Quick(std::vector<T>& array)
 {
+	if (array.size() < 2) {
+		return;
+	}
+
 	this->RecursionOfQuick(array, 0, array.size() - 1);
 }
 
@@ -251,6 +229,7 @@ void Sort<T>::Merging(std::vector<T>& array, std::vector<T>& buffer, int left, i
 			}
 			++k;
 		}
+
 		for (int i = left; i <= right; ++i) {
 			array[i] = buffer[i];
 		}
@@ -260,19 +239,66 @@ void Sort<T>::Merging(std::vector<T>& array, std::vector<T>& buffer, int left, i
 template <typename T>
 void Sort<T>::Merge(std::vector<T>& array)
 {
-	if (!array.empty()) {
-		std::vector<T> buffer(array.size());
-		this->Merging(array, buffer, 0, array.size() - 1);
+	if (array.size() < 2) {
+		return;
 	}
 	
+	std::vector<T> buffer(array.size());
+	this->Merging(array, buffer, 0, array.size() - 1);
 }
 
+/* Пирамидальная сортировка (сортировка двоичной кучей)
+ * Строится двочная куча из входных данных. На данном этапе 
+ * самый большой элемент хранится в корне кучи. Он заменяется 
+ * на последний элемент кучи, а затем  ее размер уменьшается на 1. 
+ * Полученное дерево преобразуется в двоичную кучу с новым корнем. 
+ * Рекурсивное преобразование повторяется до тех пор пока 
+ * размер кучи больше одного элемента.
+*/
+template <typename T>
+void Sort<T>::Heapify(std::vector<T>& array, int heap_size,  int root)
+{
+	int large = root;
+
+	// Инициализируем наибольший элемент как корень
+	int left = 2 * root + 1;
+	int right = 2 * root + 2;
+
+	if (left < heap_size && array[left] > array[large]) {
+		large = left;
+	}
+
+	if(right < heap_size && array[right] > array[large]) {
+		large = right;
+	}
+
+	if (large != root) {
+		std::swap(array[root], array[large]);
+		// Рекурсивно преобразуем в двоичную кучу 
+		// затронутое поддерево
+		this->Heapify(array, heap_size, large);
+	}
+}
+
+template <typename T>
+void Sort<T>::RecursionHeapify(std::vector<T>& array, int heap_size)
+{
+	for (int i = heap_size / 2 - 1; i >= 0; i--) {
+		this->Heapify(array, heap_size, i);
+	}
+
+	for (int i = heap_size - 1; i >= 0; i--) {
+		std::swap(array[0], array[i]);
+		this->Heapify(array, i, 0);
+	}
+}
 
 template <typename T>
 void Sort<T>::Heap(std::vector<T>& array)
 {
-    if (array.size() < 2)
-    {
-        return;
-    }
+	if (array.size() < 2) {
+		return;
+	}
+
+	this->RecursionHeapify(array, array.size());
 }
